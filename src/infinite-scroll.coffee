@@ -97,7 +97,7 @@ angular.module('infinite-scroll', [])
           timeout = null
           previous = now
           func.call()
-        else timeout = $interval(later, remaining, 1) unless timeout
+        else timeout = $interval(later, remaining, 1, false) unless timeout
 
     if THROTTLE_MILLISECONDS?
       handler = throttle(handler, THROTTLE_MILLISECONDS)
@@ -203,7 +203,7 @@ angular.module('infinite-scroll', [])
       if immediateCheck
         handler()
       $interval.cancel checkInterval
-    )
+    ), 0, 0, false
 ]
 if typeof module != "undefined" && typeof exports != "undefined" && module.exports == exports
   module.exports = 'infinite-scroll'
